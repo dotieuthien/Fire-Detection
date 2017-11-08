@@ -9,7 +9,7 @@ from fnc.HSI import HSI
 from fnc.RGB_model import RGB_model
 
 """Init"""
-image= cv2.imread('1.jpg')
+image= cv2.imread('Image/2.jpg')
 image = np.double(image) # Double typr for Calculation
 size = np.shape(image)
 Thres_R = 140# Threshold of Red
