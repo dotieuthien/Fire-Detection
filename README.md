@@ -6,3 +6,4 @@ A. Fire detection:
 1. Segmentation fire based on colour model.
 2. Removal Spurious flames.
 B. Smoke detection:
+sdfhgjksdfg
