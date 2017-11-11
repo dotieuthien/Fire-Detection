@@ -1,6 +1,11 @@
+"""
+Author: Do Tieu Thien
+Date: 10/11/1017
+"""
+
 import numpy as np
 import cv2
-from fnc.Pos_Segmentation import Pos_Segmentation
+from fnc.Fire_detection.Pos_Segmentation import Pos_Segmentation
 
 def Removal(image1, image2):
     # Convert background of image 1 into blue

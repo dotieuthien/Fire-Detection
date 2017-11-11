@@ -1,19 +1,15 @@
 """
 Author: Do Tieu Thien
-Date: 06/11/1017
+Date: 10/11/1017
 """
 
 """ Import """
-from fnc.HSI import HSI
-from fnc.RGB_model import RGB_model
+from fnc.Fire_detection.HSI import HSI
 
 """ Function """
-def Segmentation(image):
-    Thres_R = 140  # Threshold of Red
-    # Apply RGB colour model
-    im = RGB_model(image, Thres_R)
+def Pos_Segmentation(image):
     # Convert image into HSI colour space
-    im_HSI = HSI(im)
+    im_HSI = HSI(image)
     H = im_HSI[:, :, 0]
     S = im_HSI[:, :, 1]
     I = im_HSI[:, :, 2]
