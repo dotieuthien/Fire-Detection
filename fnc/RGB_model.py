@@ -1,5 +1,12 @@
+"""
+Author: Do Tieu Thien
+Date: 06/11/1017
+"""
+
+""" Import """
 import numpy as np
 
+""" Function """
 def RGB_model(image,Thres_R):
     size = np.shape(image)
     im_1 = np.zeros(size)

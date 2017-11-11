@@ -1,9 +1,15 @@
+"""
+Author: Do Tieu Thien
+Date: 06/11/1017
+"""
+
+""" Import """
 import numpy as np
 
+""" Function """
 def HSI(image):
     size = np.shape(image)
     im = np.zeros(size)
-
     for i in range(size[0]):
         for j in range(size[1]):
             B = image[i,j,0]

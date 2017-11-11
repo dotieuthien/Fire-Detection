@@ -1,20 +1,27 @@
 import numpy as np
 import cv2
-import matplotlib.pyplot as plt
-image = cv2.imread('1.jpg')
-size = np.shape(image)
-c = np.zeros(size)
-B = image[:, :, 0]
-G = image[:, :, 1]
-R = image[:, :, 2]
-c[:,:,0] = R[:,:] > 100
-c[:,:,1] = c[:,:,0]
-c[:,:,2] = c[:,:,1]
-im = c*image
-a = np.array([[12,3,4,4],[23,4,3,22]])
-b = np.array([[0,1,1,0],[1,1,0,0]])
-c = np.array([[23,3,45,3],[3,4,5,6]])
-d = (a[:,:] > b[:,:]) & (a[:,:] > c[:,:])
-print(a[:,:] > b[:,:])
-print(a[:,:] > c[:,:])
-print(d)
+cap = cv2.VideoCapture('Video/test1.avi')
+if (cap.isOpened() == False):
+    print("Error opening video stream or file")
+    # Read until video is completed
+while (cap.isOpened()):
+    # Capture frame-by-frame
+    ret,frame = cap.read()
+    if ret == True:
+
+        # Display the resulting frame
+        cv2.imshow('Frame', frame)
+
+        # Press Q on keyboard to  exit
+        if cv2.waitKey(25) & 0xFF == ord('q'):
+            break
+
+    # Break the loop
+    else:
+        break
+
+# When everything done, release the video capture object
+cap.release()
+
+# Closes all the frames
+cv2.destroyAllWindows()
