@@ -18,8 +18,8 @@ def Segmentation(image):
     S = im_HSI[:, :, 1]
     I = im_HSI[:, :, 2]
     # Condition of flames pixel:
-    im_HSI_temp = ((H[:, :] >= 0) & (H[:, :] <= 60)) & ((S[:, :] >= 0.4) & (S[:, :] <= 1)) & (
-    (I[:, :] >= 127) & (I[:, :] <= 255))
+    im_HSI_temp = ((H[:, :] >= 0) & (H[:, :] <= 60)) & ((S[:, :] >= 0.2) & (S[:, :] <= 1)) & (
+    (I[:, :] >= 100) & (I[:, :] <= 255))
     im_HSI[:, :, 0] = im_HSI_temp[:, :]
     im_HSI[:, :, 1] = im_HSI_temp[:, :]
     im_HSI[:, :, 2] = im_HSI_temp[:, :]

@@ -17,7 +17,11 @@ def HSI(image):
             R = image[i,j,2]
             if (R != 0) & ( G != 0) & (B != 0):
                 # Convert into H array
-                phi = (np.arccos(0.5*((R-G) + (R-B))/np.sqrt((R-G)*(R-G) + (R-B)*(G-B)))/np.pi)*180
+                if R == G == B:
+                    phi = 90
+                else:
+                    phi = (np.arccos(0.5*((R-G) + (R-B))/np.sqrt((R-G)*(R-G) + (R-B)*(G-B)))/np.pi)*180
+
                 if B <= G:
                     im[i,j,0] = phi
                 else:
