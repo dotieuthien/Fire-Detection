@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-cap = cv2.VideoCapture('Video/test4.avi')
+cap = cv2.VideoCapture('Video/test2.avi')
 if (cap.isOpened() == False):
     print("Error opening video stream or file")
     # Read until video is completed

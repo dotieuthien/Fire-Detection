@@ -9,6 +9,7 @@ from fnc.Fire_detection.RGB_model import RGB_model
 
 """ Function """
 def Segmentation(image):
+    print("Function Segmentation is loading")
     Thres_R = 140  # Threshold of Red
     # Apply RGB colour model
     im = RGB_model(image, Thres_R)
