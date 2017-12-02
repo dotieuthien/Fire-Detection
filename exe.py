@@ -33,6 +33,7 @@ while check:
         img_temp = cv2.imread("Image/image%d.jpg" % count_2)
         exec("image_%d = Segmentation(img_temp)" % count_2)
 
+        # Remove spurious flames
         if count_2 >= 2:
             exec("image_Seg_1 = image_%d" % (count_2 - 1))
             exec("image_Seg_2 = image_%d" % count_2)
