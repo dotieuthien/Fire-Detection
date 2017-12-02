@@ -7,38 +7,53 @@ Date: 06/11/1017
 """ IMPORT """
 """ ****************************************************************************************** """
 import cv2
-import numpy as np
+import os
 from fnc.Fire_detection.Segmentation import Segmentation
 from fnc.Fire_detection.Removal import Removal
 import time
-start_time = time.time()
 
 
 """ ****************************************************************************************** """
-""" INIT """
+""" PROGRAM """
 """ ****************************************************************************************** """
-image = cv2.imread('Image/1.png')
-image = np.double(image) # Double type for Calculation
+cap = cv2.VideoCapture(1)
+check = True
+count_1 = 0
+count_2 = 0
 
-image_consecutive = cv2.imread('Image/2.png')
-image_consecutive = np.double(image_consecutive)
+while check:
+    check, image = cap.read()
 
+    if (count_1 % 30) == 0:
+        count_2 += 1
+        # Save image in Image folder
+        cv2.imwrite("..\Fire_detection\Image\image%d.jpg" % count_2,image)
 
-""" ****************************************************************************************** """
-""" FIRE DETECTION """
-""" ****************************************************************************************** """
-""" Segmentation for flames of image """
-image_1 = Segmentation(image) # Type of image_1 is double
-image_2 = Segmentation(image_consecutive)
+        # Segmentation
+        img_temp = cv2.imread("Image/image%d.jpg" % count_2)
+        exec("image_%d = Segmentation(img_temp)" % count_2)
 
-""" Removal spurious flames """
-image_flames = Removal(image_1,image_2) # image_flames have pixels of fire
+        if count_2 >= 2:
+            exec("image_Seg_1 = image_%d" % (count_2 - 1))
+            exec("image_Seg_2 = image_%d" % count_2)
+            image_result = Removal(image_Seg_1, image_Seg_2)
 
-print("--- %s seconds ---" % (time.time() - start_time))
-image_flames = np.uint8(image_flames)
-cv2.imshow('image_flames',image_flames)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+            if sum(sum(image_result[:,:,0])) > 0:
+                print("WARNING...")
+
+    count_1 += 1
+
+    # Remove old images
+    if count_1 == 151:
+        count_1 = 0
+        count_2 = 0
+        dirPath = "..\Fire_detection\Image"
+        fileList = os.listdir(dirPath)
+        for fileName in fileList:
+            os.remove(dirPath + "/" + fileName)
+
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
 
 
 """ ****************************************************************************************** """
