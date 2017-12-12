@@ -12,11 +12,10 @@ from fnc.Fire_detection.Segmentation import Segmentation
 from fnc.Fire_detection.Removal import Removal
 import time
 
-
 """ ****************************************************************************************** """
 """ PROGRAM """
 """ ****************************************************************************************** """
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 check = True
 count_1 = 0
 count_2 = 0
@@ -29,7 +28,7 @@ while check:
         count_2 += 1
         count_3 += 1
         # Save image in Image folder
-        cv2.imwrite("..\Fire_detection\Image\image%d.jpg" % count_2,image)
+        cv2.imwrite("../Fire_detection/Image/image%d.jpg" % count_2,image)
 
         # Segmentation
         img_temp = cv2.imread("Image/image%d.jpg" % count_2)
@@ -52,7 +51,7 @@ while check:
     if count_1 == 151:
         count_1 = 0
         count_2 = 0
-        dirPath = "..\Fire_detection\Image"
+        dirPath = "../Fire_detection/Image"
         fileList = os.listdir(dirPath)
         for fileName in fileList:
             os.remove(dirPath + "/" + fileName)
