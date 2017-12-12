@@ -20,18 +20,22 @@ cap = cv2.VideoCapture(1)
 check = True
 count_1 = 0
 count_2 = 0
+count_3 = 0
 
 while check:
     check, image = cap.read()
 
     if (count_1 % 30) == 0:
         count_2 += 1
+        count_3 += 1
         # Save image in Image folder
         cv2.imwrite("..\Fire_detection\Image\image%d.jpg" % count_2,image)
 
         # Segmentation
         img_temp = cv2.imread("Image/image%d.jpg" % count_2)
         exec("image_%d = Segmentation(img_temp)" % count_2)
+        exec("img_Seg_temp = image_%d" % count_2)
+        cv2.imwrite("..\Fire_detection\Image_Seg\image%d.jpg" % count_3, img_Seg_temp)
 
         # Remove spurious flames
         if count_2 >= 2:
